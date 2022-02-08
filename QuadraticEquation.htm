@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discriminant</title>
+    <style> 
+        body { text-align: center; }
+        input { width: 40px; height: 40px; border: 2px solid #333; font: 1.2em sans-serif; text-align: center;}
+        h1 { font-family: sans-serif;}
+        div { padding-top: 50px; }
+        span { font: 1.2em sans-serif; }
+    </style>
+</head>
+<body>
+    <div>
+        <input type="text" id="a" /><span>x</span><sup>2</sup> + 
+        <input type="text" id="b" /><span>x</span> + 
+        <input type="text" id="c">
+        <button onclick="calc()">=</button> <span>0</span>
+        <h2 id="result"></h2>
+    </div>
+
+    <script>
+        let a = document.getElementById("a")
+        let b = document.getElementById("b")
+        let c = document.getElementById("c")
+        let result = document.getElementById("result")
+
+        function calc() { 
+            let avalue = +a.value
+            let bvalue = +b.value
+            let cvalue = +c.value
+            let discriminant = bvalue**2 - 4 * avalue * cvalue
+            let root1 = (-bvalue + Math.sqrt(discriminant)) / (2 * avalue)
+            let root2 = (-bvalue - Math.sqrt(discriminant)) / (2 * avalue)
+            let root3 = -bvalue / (2 * avalue)
+
+            if ( discriminant > 0)
+                result.innerHTML = ` ${root1} and ${root2} are roots of quadratic equation `
+            else if (discriminant == 0)
+                result.innerHTML = ` ${root3} is root of quadratic equation `        
+            else 
+                result.innerHTML = ` Quadratic equation has no real root `
+        }
+    </script>
+</body>
+</html>
